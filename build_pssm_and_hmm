@@ -1,0 +1,31 @@
+Build PSSMs¶
+
+To build PSSM from a MSA file it is necesary to use the command line version of Blast
+Install Blast (~250 Mb)
+
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-x64-linux.tar.gz
+tar -xzf ncbi-blast-2.12.0+-x64-linux.tar.gz
+
+Create a PSSM from a Fasta MSA
+
+Before running the command remove gi|1774282670|ref|WP_153585536.1| from the data/P06621_refseq_selected_blast_msa.fasta file, for some reasons it breaks the PSSM build
+
+The content of the file in the -subject option is irrelevant, just use a valid fasta file
+
+Example:
+ncbi-blast-2.12.0+/bin/psiblast -subject data/msa/clustalo_uniref50.fasta -in_msa data/msa/clustalo_uniref50_clean.fa -out_pssm data/pssm/pssm_clustalo_uniref50.pssm 
+
+
+Build HMM
+
+Install HMMER (~18 Mb)
+
+wget http://eddylab.org/software/hmmer/hmmer.tar.gz
+tar -xzf hmmer.tar.gz
+./configure
+make
+
+Generate HMMs from MSAs
+
+hmmer-3.3.2/src/hmmbuild data/hmm/hmm_clustalo_uniref50.hmm data/msa/clustalo_uniref50_clean.fa
+
