@@ -26,6 +26,8 @@ import igraph
 from igraph import *
 
 import pickle
+import re
+import string
 
 from fisher import pvalue
 
